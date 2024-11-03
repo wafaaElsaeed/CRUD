@@ -1,1 +1,1 @@
-export const host_url = 'https://dummyjson.com/'
+export const host_url = process.env.NEXT_PUBLIC_BASE_URL || 'https://dummyjson.com/'
