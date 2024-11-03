@@ -2,8 +2,9 @@ import React from 'react';
 import Select from 'react-select'
 
 export default function MultiSelectInput({ label, placeholder, name, options, setValue, trigger, error, value }) {
+
     function onChangeHandler(e) {
-        let selectedOptions = [];
+        const selectedOptions = [];
         e?.map((option) => {
             selectedOptions.push(option?.value)
         })

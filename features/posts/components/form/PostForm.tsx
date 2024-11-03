@@ -42,8 +42,8 @@ export default function PostForm({ submitHandler, id = null }) {
   function getTagsOptions() {
     getAllPostTags().then((res) => {
       console.log("🚀 ~ getAllPostTags ~ res:", res.data)
-      let response = res?.data;
-      let postTags = [...allTags]
+      const response = res?.data;
+      const postTags = [...allTags]
       response.map((item) => (
         postTags.push({ value: item?.slug, label: item.name })
       ))
@@ -70,8 +70,7 @@ export default function PostForm({ submitHandler, id = null }) {
   /* submit form handler */
   async function onSubmit(data) {
     setLoading(true)
-    let submitProps = await submitHandler(data);
-    console.log("🚀 ~ onSubmit ~ submitProps:", submitProps)
+    const submitProps = await submitHandler(data);
     if (submitProps === 'done') {
       setLoading(false)
       router.push('/')
@@ -87,9 +86,10 @@ export default function PostForm({ submitHandler, id = null }) {
         <div className='flex flex-col justify-center gap-3 gap-y-5'>
           {/* title input */}
           <TextInput
-            label={'Post title*'}
-            name={'title'}
-            placeholder={'title'}
+            type='text'
+            label='Post title*'
+            name='title'
+            placeholder='title'
             error={errors?.["title"] ? errors?.["title"]?.message : " "}
             register={{ ...register("title") }}
           />
@@ -97,17 +97,18 @@ export default function PostForm({ submitHandler, id = null }) {
           <MultiSelectInput
             options={allTags}
             setValue={setValue}
-            trigger={trigger}
-            name={'tags'}
-            label={'post tags*'}
             value={allTags?.filter(option => tags?.includes(option.value))}
+            trigger={trigger}
+            name='tags'
+            placeholder='select...'
+            label='post tags*'
             error={errors?.["tags"] ? errors?.["tags"]?.message : " "}
           />
           {/* body */}
           <TextArea
-            label={'Post body*'}
-            name={'body'}
-            placeholder={'body'}
+            label='Post body*'
+            name='body'
+            placeholder='body'
             error={errors?.["body"] ? errors?.["body"]?.message : " "}
             register={{ ...register("body") }}
           />
