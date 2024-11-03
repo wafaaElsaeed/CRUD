@@ -2,20 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding-inline: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* *************************************************************** */
+/* scroll bar style */
+/* *************************************************************** */
+.customScroll::-webkit-scrollbar {
+  width: 0.5rem;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.customScroll::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f1f1f1;
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.462) !important;
+  border-radius: 15px !important;
+  cursor:pointer;
+}
+.customScroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(59, 58, 58, 0.793) !important;
+}
+
+
+/* *************************************************************** */
+/* paginagtion style */
+/* *************************************************************** */
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+
+.pagination li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 2.375rem;
+  height:2.375rem;
+  font-size:0.938rem;
+  margin-inline-end: 0.313rem;
+  color:#8A8A8A;
+  border:1px solid #F3F3F3;
+}
+
+.pagination li a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination li.break{
+  border:none;
+}
+.pagination li.active{
+  color: #fff !important;
+  background-color: #66D7FF !important;
+}
+.pagination .previous,.pagination .next{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F3F6F9 !important;
+}
+
+.pagination li.disabled{
+  background-color:#F3F6F9 !important;
 }
