@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { FaSearch } from 'react-icons/fa';
 
 
 export default function Search({ search , setSearch ,setPage }) {
 
-    function changeHandler(e:ChangeEvent) {
+    function changeHandler(e: ChangeEvent<HTMLInputElement>) {
         setPage(1)
         setSearch(e.target.value);
     }

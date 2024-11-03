@@ -50,7 +50,7 @@ export default function AllPostsContainer() {
                     All Posts
                 </h1>
                 {/* search */}
-                <Search setSearch={setSearch} setPage={setPage} />
+                <Search search={search} setSearch={setSearch} setPage={setPage} />
                 {/* create */}
                 <Link href='/posts/create' className='px-5 py-2 bg-slate-600 text-white rounded-md hover:opacity-80'>
                     Add Post
@@ -72,6 +72,7 @@ export default function AllPostsContainer() {
                                     tags={post?.tags}
                                     reactions={post?.reactions}
                                     views={post?.views}
+                                    id={post?.id}
                                 />
                             ))
                         }
