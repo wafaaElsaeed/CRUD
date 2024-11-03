@@ -7,10 +7,12 @@ import Pagination from '@/components/pagination/Pagination'
 import Search from './Search'
 import useBebounce from '@/hooks/useBebounce';
 import Link from 'next/link'
+import Loader from '@/components/loading/Loader'
 
 export default function AllPostsContainer() {
     const [posts, setPosts] = useState<Post[]>([]);
-    
+    const [isLoading, setIsLoading] = useState(true);
+
     /* for pagination */
     const [page, setPage] = useState(1);
     const limit = 10; // Number of posts per page
@@ -20,18 +22,17 @@ export default function AllPostsContainer() {
     const [search, setSearch] = useState('');
     const searchQuery = useBebounce(search, 1000);
 
-    //const [filterObj ,setFilterObj] = useState({page,searchQuery})
-
-
     useEffect(() => {
         const skip = (page - 1) * limit;
-        getPosts(skip,search)
-    }, [page,searchQuery])
+        getPosts(skip, search)
+    }, [page, searchQuery])
 
     /* get all posts */
-    function getPosts(skip: number = 0 , search: string ='') {
-        getAllPosts(skip,search).then((res) => {
+    function getPosts(skip: number = 0, search: string = '') {
+        setIsLoading(true)
+        getAllPosts(skip, search).then((res) => {
             const returnedPosts = [...res.data.posts]
+            setIsLoading(false)
             setPosts(returnedPosts)
             setTotalPages(Math.ceil(res.data.total / limit));
         })
@@ -56,23 +57,31 @@ export default function AllPostsContainer() {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-7">
-                {
-                    posts?.map((post: Post) => (
-                        <PostCard
-                            key={post?.id}
-                            title={post?.title}
-                            body={post?.body}
-                            tags={post?.tags}
-                            reactions={post?.reactions}
-                            views={post?.views}
-                        />
-                    ))
-                }
-            </div>
-            <div className='my-8'>
-                <Pagination pageCount={totalPages} onPageChange={handlePageChange} />
-            </div>
+
+            {isLoading ?
+                <Loader height={'h-[50vh]'} />
+                :
+                <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-7">
+                        {
+                            posts?.map((post: Post) => (
+                                <PostCard
+                                    key={post?.id}
+                                    title={post?.title}
+                                    body={post?.body}
+                                    tags={post?.tags}
+                                    reactions={post?.reactions}
+                                    views={post?.views}
+                                />
+                            ))
+                        }
+                    </div>
+                    <div className='my-8'>
+                        <Pagination pageCount={totalPages} onPageChange={handlePageChange} />
+                    </div>
+                </>
+            }
+
         </div>
     )
 }
