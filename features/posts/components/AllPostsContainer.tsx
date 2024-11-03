@@ -65,15 +65,7 @@ export default function AllPostsContainer() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-7">
                         {
                             posts?.map((post: Post) => (
-                                <PostCard
-                                    key={post?.id}
-                                    title={post?.title}
-                                    body={post?.body}
-                                    tags={post?.tags}
-                                    reactions={post?.reactions}
-                                    views={post?.views}
-                                    id={post?.id}
-                                />
+                                <PostCard key={post?.id} post={post} />
                             ))
                         }
                     </div>
