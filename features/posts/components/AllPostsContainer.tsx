@@ -59,21 +59,21 @@ export default function AllPostsContainer() {
 
 
             {isLoading ?
-                <Loader height={'h-[50vh]'} />
+                <Loader height={'h-[80vh]'} />
                 :
                 <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-7">
                         {
-                            posts?.map((post: Post) => (
-                                <PostCard key={post?.id} post={post} />
+                            posts.map((post) => (
+                                <PostCard key={post.id} post={post} />
                             ))
                         }
                     </div>
-                    <div className='my-8'>
-                        <Pagination pageCount={totalPages} onPageChange={handlePageChange} />
-                    </div>
                 </>
             }
+            <div className='my-8'>
+                <Pagination pageCount={totalPages} onPageChange={handlePageChange} />
+            </div>
 
         </div>
     )

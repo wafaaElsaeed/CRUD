@@ -4,13 +4,17 @@ import { AiFillDislike, AiFillLike } from 'react-icons/ai';
 import { FaEdit, FaEye } from "react-icons/fa";
 import { Post } from '../types/Post';
 
-export default function PostCard(post : Post) {
+type PostCardProps = {
+  post: Post,
+}
+
+export default function PostCard({ post }: PostCardProps) {
   return (
     <div className='border p-4 rounded-md flex flex-col gap-2'>
       {/* title */}
       <div className='flex gap-2 items-center'>
         <h2 className='text-lg font-semibold min-h-16'>
-          {post.title}
+          {post?.title}
         </h2>
 
         {/* link to edit page */}
