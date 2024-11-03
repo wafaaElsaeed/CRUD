@@ -1,14 +1,13 @@
 
 import AllPostsContainer from "@/features/posts/components/AllPostsContainer";
 
-export async function generateMetadata() {
+export function generateMetadata() {
   return {
     title: 'All Posts',
   };
 }
 
-export default async  function Home() {
-
+export default function Home() {
   return (
     <>
       <AllPostsContainer  />
