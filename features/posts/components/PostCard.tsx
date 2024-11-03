@@ -12,16 +12,16 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <div className='border p-4 rounded-md flex flex-col gap-2'>
       {/* title */}
-      <div className='flex gap-2 items-center'>
-        <h2 className='text-lg font-semibold min-h-16'>
-          {post?.title}
-        </h2>
-
+      <div className='flex  justify-end'>
         {/* link to edit page */}
         <Link href={`/posts/${post.id}/update`}>
           <FaEdit />
         </Link>
+
       </div>
+      <h2 className='text-lg font-semibold min-h-16'>
+        {post?.title}
+      </h2>
 
       {/* body */}
       <p className='h-[250px] overflow-y-auto customScroll text-sm text-gray-600 leading-7'>

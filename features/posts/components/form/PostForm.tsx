@@ -9,6 +9,7 @@ import { getAllPostTags } from '../../apis/getAllPostTags';
 import { getSinglePost } from '../../apis/getPostById';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function PostForm({ submitHandler, id = null }) {
   const router = useRouter()
@@ -78,52 +79,57 @@ export default function PostForm({ submitHandler, id = null }) {
   }
 
   return (
-    <div className='w-[60%] mx-auto my-32 border p-10 rounded-md'>
-      <h1 className='capitalize text-center text-2xl font-bold mb-5'>
-        {id ? 'update post' : 'create new post'}
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='flex flex-col justify-center gap-3 gap-y-5'>
-          {/* title input */}
-          <TextInput
-            type='text'
-            label='Post title*'
-            name='title'
-            placeholder='title'
-            error={errors?.["title"] ? errors?.["title"]?.message : " "}
-            register={{ ...register("title") }}
-          />
-          {/* tags select input */}
-          <MultiSelectInput
-            options={allTags}
-            setValue={setValue}
-            value={allTags?.filter(option => tags?.includes(option.value))}
-            trigger={trigger}
-            name='tags'
-            placeholder='select...'
-            label='post tags*'
-            error={errors?.["tags"] ? errors?.["tags"]?.message : " "}
-          />
-          {/* body */}
-          <TextArea
-            label='Post body*'
-            name='body'
-            placeholder='body'
-            error={errors?.["body"] ? errors?.["body"]?.message : " "}
-            register={{ ...register("body") }}
-          />
-        </div>
-        <button type='submit' className='bg-blue-700 text-white px-4 py-2 mt-8 rounded-md capitalize flex justify-center items-center min-w-48'>
+    <div className='my-32'>
+      <Link href='/' className='text-blue-700'>
+        Back to all Posts
+      </Link>
+      <div className='w-[60%] mx-auto  border p-10 rounded-md'>
+        <h1 className='capitalize text-center text-2xl font-bold mb-5'>
+          {id ? 'update post' : 'create new post'}
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className='flex flex-col justify-center gap-3 gap-y-5'>
+            {/* title input */}
+            <TextInput
+              type='text'
+              label='Post title*'
+              name='title'
+              placeholder='title'
+              error={errors?.["title"] ? errors?.["title"]?.message : " "}
+              register={{ ...register("title") }}
+            />
+            {/* tags select input */}
+            <MultiSelectInput
+              options={allTags}
+              setValue={setValue}
+              value={allTags?.filter(option => tags?.includes(option.value))}
+              trigger={trigger}
+              name='tags'
+              placeholder='select...'
+              label='post tags*'
+              error={errors?.["tags"] ? errors?.["tags"]?.message : " "}
+            />
+            {/* body */}
+            <TextArea
+              label='Post body*'
+              name='body'
+              placeholder='body'
+              error={errors?.["body"] ? errors?.["body"]?.message : " "}
+              register={{ ...register("body") }}
+            />
+          </div>
+          <button type='submit' className='bg-blue-700 text-white px-4 py-2 mt-8 rounded-md capitalize flex justify-center items-center min-w-48'>
 
-          {!loading ?
-            <span >
-              {id ? 'save changes' : 'add new'}
-            </span>
-            :
-            <Image src={`/gif/loader.gif`} width={25} height={25} alt='loading' />
-          }
-        </button>
-      </form>
+            {!loading ?
+              <span >
+                {id ? 'save changes' : 'add new'}
+              </span>
+              :
+              <Image src={`/gif/loader.gif`} width={25} height={25} alt='loading' />
+            }
+          </button>
+        </form>
+      </div>
     </div>
   )
 }
