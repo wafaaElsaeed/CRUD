@@ -5,7 +5,7 @@ import PostForm from './PostForm';
 
 export default function UpdatePost({ id }) {
     const onSubmit = async (data) => {
-        return await updatePost({ ...data }, id).then((res) => {
+        return await updatePost({ ...data }, id).then(() => {
             return 'done';
         }).catch((err) => {
             return err.response.errors;
