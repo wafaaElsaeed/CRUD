@@ -45,7 +45,7 @@ export default function AllPostsContainer() {
 
     return (
         <div>
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center flex-wrap mb-4'>
                 <h1 className='mt-10 mb-6 text-3xl font-bold text-center'>
                     All Posts
                 </h1>

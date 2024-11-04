@@ -83,7 +83,7 @@ export default function PostForm({ submitHandler, id = null }) {
       <Link href='/' className='text-blue-700'>
         Back to all Posts
       </Link>
-      <div className='w-[60%] mx-auto  border p-10 rounded-md'>
+      <div className='md:w-[60%] mx-auto  border p-10 rounded-md mt-4'>
         <h1 className='capitalize text-center text-2xl font-bold mb-5'>
           {id ? 'update post' : 'create new post'}
         </h1>
